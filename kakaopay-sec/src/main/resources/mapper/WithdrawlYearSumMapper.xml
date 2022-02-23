@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+            PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+            "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kakaopay.sec.mapper.WithdrawlYearSumMapper">
+	<select id="selectWithdrawlYearSum" parameterType="getWithdrawlYearSumInDto" resultType="getWithdrawlYearSumOutDto">
+		SELECT SUM(CASE WHEN WITHDRAWL_YN = 'Y'
+                THEN WITHDRAWL_AMOUNT
+                WHEN WITHDRAWL_YN = 'N'
+                THEN WITHDRAWL_AMOUNT * -1
+           		END) AS WITHDRAWL_YEAR_SUM
+		FROM ACCOUNT_HISTORY
+		WHERE FORMATDATETIME(WITHDRAWL_DATE, 'yyyy') = #{year} 
+    </select>
+</mapper>

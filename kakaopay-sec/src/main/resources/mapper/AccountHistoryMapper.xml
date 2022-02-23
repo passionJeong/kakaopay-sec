@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+            PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+            "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kakaopay.sec.mapper.AccountHistoryMapper">
+    <select id="selectAccountInfo" parameterType="String" resultType="getAccountInfoOutDto">
+		SELECT USER_ID, ACCOUNT_NUM
+		FROM ACCOUNT_INFO
+		WHERE ACCOUNT_NUM = #{accountNum}
+    </select>
+	<insert id="insertAccountHistory" parameterType="postAccountHistoryInDto">
+		INSERT INTO ACCOUNT_HISTORY(ACCOUNT_NUM, WITHDRAWL_YN, WITHDRAWL_AMOUNT, WITHDRAWL_DATE)
+		VALUES(#{accountNum}, #{withdrawlYn}, #{withdrawlAmount}, #{withdrawlDate})
+    </insert>
+	<select id="selectAllAccountHistoryList" resultType="getAccountHistoryListOutDto">
+		SELECT ACCOUNT_NUM, WITHDRAWL_YN, WITHDRAWL_AMOUNT, FORMATDATETIME(WITHDRAWL_DATE, 'yyyy-MM-dd') AS WITHDRAWL_DATE
+		FROM ACCOUNT_HISTORY
+		ORDER BY ACCOUNT_NUM ASC, WITHDRAWL_DATE DESC
+    </select>
+    <select id="selectAccountHistoryList" parameterType="getAccountHistoryListInDto" resultType="getAccountHistoryListOutDto">
+		SELECT ACCOUNT_NUM, WITHDRAWL_YN, WITHDRAWL_AMOUNT, FORMATDATETIME(WITHDRAWL_DATE, 'yyyy-MM-dd') AS WITHDRAWL_DATE
+		FROM ACCOUNT_HISTORY
+		WHERE ACCOUNT_NUM = #{accountNum}
+		ORDER BY WITHDRAWL_DATE DESC
+    </select>
+</mapper>

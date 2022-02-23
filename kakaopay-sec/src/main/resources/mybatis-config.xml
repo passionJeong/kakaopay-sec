@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+            PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+            "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+	<typeAliases>
+		<typeAlias type="kakaopay.sec.dto.PostUserInDto" alias="postUserInDto"/>
+		<typeAlias type="kakaopay.sec.dto.PostUserOutDto" alias="postUserOutDto"/>
+		<typeAlias type="kakaopay.sec.dto.GetUserInfoInDto" alias="getUserInfoInDto"/>
+		<typeAlias type="kakaopay.sec.dto.GetUserInfoOutDto" alias="getUserInfoOutDto"/>
+		<typeAlias type="kakaopay.sec.dto.GetUserListOutDto" alias="getUserListOutDto"/>
+		<typeAlias type="kakaopay.sec.dto.PostAccountInDto" alias="postAccountInDto"/>
+		<typeAlias type="kakaopay.sec.dto.GetAllAccountListOutDto" alias="getAllAccountListOutDto"/>
+		<typeAlias type="kakaopay.sec.dto.GetAccountInfoOutDto" alias="getAccountInfoOutDto"/>
+		<typeAlias type="kakaopay.sec.dto.PostAccountHistoryInDto" alias="postAccountHistoryInDto"/>
+		<typeAlias type="kakaopay.sec.dto.PostAccountHistoryOutDto" alias="postAccountHistoryOutDto"/>
+		<typeAlias type="kakaopay.sec.dto.GetAllAccountHistoryListOutDto" alias="getAllAccountHistoryListOutDto"/>
+		<typeAlias type="kakaopay.sec.dto.GetAllAccountListOutDto" alias="getAllAccountListOutDto"/>
+		<typeAlias type="kakaopay.sec.dto.GetAccountHistoryListInDto" alias="getAccountHistoryListInDto"/>
+		<typeAlias type="kakaopay.sec.dto.GetAccountHistoryListOutDto" alias="getAccountHistoryListOutDto"/>
+		<typeAlias type="kakaopay.sec.dto.GetAccountBalanceInDto" alias="getAccountBalanceInDto"/>
+		<typeAlias type="kakaopay.sec.dto.GetAccountBalanceOutDto" alias="getAccountBalanceOutDto"/>
+		<typeAlias type="kakaopay.sec.dto.GetAccountBalanceAgeGroupOutDto" alias="getAccountBalanceAgeGroupOutDto"/>
+		<typeAlias type="kakaopay.sec.dto.GetWithdrawlYearSumInDto" alias="getWithdrawlYearSumInDto"/>
+		<typeAlias type="kakaopay.sec.dto.GetWithdrawlYearSumOutDto" alias="getWithdrawlYearSumOutDto"/>
+		<typeAlias type="kakaopay.sec.dto.GetWithdrawlRankingInDto" alias="getWithdrawlRankingInDto"/>
+		<typeAlias type="kakaopay.sec.dto.GetWithdrawlRankingOutDto" alias="getWithdrawlRankingOutDto"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="mapper/UserMapper.xml"/>
+		<mapper resource="mapper/AccountMapper.xml"/>
+		<mapper resource="mapper/AccountHistoryMapper.xml"/>
+		<mapper resource="mapper/AccountBalanceMapper.xml"/>
+		<mapper resource="mapper/AccountBalanceAgeGroupMapper.xml"/>
+		<mapper resource="mapper/WithdrawlYearSumMapper.xml"/>
+		<mapper resource="mapper/WithdrawlRankingMapper.xml"/>
+	</mappers>
+</configuration>

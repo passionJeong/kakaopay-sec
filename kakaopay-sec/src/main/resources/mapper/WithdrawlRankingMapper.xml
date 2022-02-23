@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+            PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+            "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kakaopay.sec.mapper.WithdrawlRankingMapper">
+	<select id="selectWithdrawlRanking" parameterType="getWithdrawlRankingInDto" resultType="getWithdrawlRankingOutDto">
+		<![CDATA[
+		SELECT A.USER_ID, A.USER_NAME,
+				SUM(CASE WHEN WITHDRAWL_YN = 'Y'
+                THEN WITHDRAWL_AMOUNT
+                WHEN WITHDRAWL_YN = 'N'
+                THEN WITHDRAWL_AMOUNT * -1
+           		END) AS WITHDRAWL_AMOUNT
+		FROM USER_INFO A
+		INNER JOIN ACCOUNT_INFO B ON A.USER_ID = B.USER_ID
+		INNER JOIN ACCOUNT_HISTORY C ON B.ACCOUNT_NUM = C.ACCOUNT_NUM
+		WHERE FORMATDATETIME(WITHDRAWL_DATE, 'yyyy-MM-dd') >= FORMATDATETIME(#{startDate}, 'yyyy-MM-dd')
+		AND  FORMATDATETIME(WITHDRAWL_DATE, 'yyyy-MM-dd') <= FORMATDATETIME(#{endDate}, 'yyyy-MM-dd')
+		GROUP BY A.USER_ID
+		ORDER BY WITHDRAWL_AMOUNT DESC
+		]]>
+    </select>
+</mapper>

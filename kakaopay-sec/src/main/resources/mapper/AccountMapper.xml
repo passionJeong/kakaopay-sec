@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+            PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+            "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kakaopay.sec.mapper.AccountMapper">
+    <select id="selectUserInfo" parameterType="getUserInfoInDto" resultType="getUserInfoOutDto">
+		SELECT USER_ID, USER_NAME, USER_AGE, FORMATDATETIME(USER_JOIN_DATE, 'yyyy-MM-dd')
+		FROM USER_INFO
+		WHERE USER_ID = #{userId}
+    </select>
+	<insert id="insertAccount" parameterType="postAccountInDto">
+		INSERT INTO ACCOUNT_INFO(USER_ID, ACCOUNT_NUM)
+		VALUES(#{userId}, #{accountNum})
+    </insert>
+    <select id="selectAllAccountList" resultType="getAllAccountListOutDto">
+		SELECT USER_ID, ACCOUNT_NUM
+		FROM ACCOUNT_INFO
+		ORDER BY ACCOUNT_NUM ASC
+    </select>
+</mapper>
